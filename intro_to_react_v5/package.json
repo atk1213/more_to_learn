@@ -1,0 +1,17 @@
+{
+  "name": "intro_to_react_v5",
+  "version": "1.0.0",
+  "description": "react overview",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  }
+}
