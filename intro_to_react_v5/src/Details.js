@@ -10,6 +10,7 @@
 import React from 'react';
 import pet from '@frontendmasters/pet';
 import Carousel from './Carousel';
+import ErrorBoundary from './ErrorBoundary';
 
 class Details extends React.Component {
   // constructor(props){
@@ -27,6 +28,8 @@ class Details extends React.Component {
     // im going to do this once when i'm created, and then i'm done
   // it's important to use an arrow function here to bind keyword this
   componentDidMount(){
+    // throw new Error('this is what would happen if there was an error')
+      // ^ this error wouldn't be caught if only the return statement in this component was wrapped with ErrorBoundary
     pet.animal(this.props.id)
       .then(({ animal }) => {
         this.setState({
@@ -59,4 +62,10 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+export default function DetailsWithErrorBoundaries(props) {
+  return (
+    <ErrorBoundary>
+      <Details {...props} />
+    </ErrorBoundary>
+  )
+};
