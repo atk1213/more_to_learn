@@ -21,7 +21,7 @@ class ErrorBoundary extends Component {
           redirect: true
         })
       }, 5000)
-      // setTimeout(navigate('/'), 5000)
+      // setTimeout(() => navigate('/'), 5000)
     }
   }
   render() {
