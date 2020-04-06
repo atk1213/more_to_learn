@@ -50,9 +50,10 @@ export default function Pets () {
           // data: { pets: pets.concat([addPet]) }
           data: {pets: [addPet, ...pets]}
         })
-      }
+      },
+      // optimisticResponse: {}
     }
-    )
+  )
 
   
   const onSubmit = input => {
@@ -60,13 +61,23 @@ export default function Pets () {
     // input = type and name
     addPet({
       variables: {
-        newPet: input
+        newPet: input,
+      },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        addPet: {
+          id: Math.floor(Math.random() * 100) + '',
+          __typename: 'Pet',
+          name: input.name,
+          type: input.type,
+          img: 'https://pawsonthehill.com/wp-content/uploads/2018/03/5166-Pets.png'
+        }
       }
     })
-
   }
   
-  if (loading || newPet.loading) {return <Loader />}
+  // if (loading || newPet.loading) {return <Loader />}
+  if (loading) {return <Loader />}
   if (error || newPet.error) {console.error(error)}
 
   if (modal) {
