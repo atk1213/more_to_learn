@@ -36,9 +36,24 @@ export default function Pets () {
   // returns an object with data, loading, and error
 
   // const [addPet, {data, loading, error}] = useMutation(ADD_PET)
-  const [addPet, newPet] = useMutation(ADD_PET)
+  // const [addPet, newPet] = useMutation(ADD_PET)
   // 1st item is the query function
   // second item is an object with data, loading, and error
+
+  const [addPet, newPet] = useMutation(
+    ADD_PET,
+    {
+      update(cache, { data: { addPet } }) {
+        const { pets } = cache.readQuery({ query: GET_PETS });
+        cache.writeQuery({
+          query: GET_PETS,
+          // data: { pets: pets.concat([addPet]) }
+          data: {pets: [addPet, ...pets]}
+        })
+      }
+    }
+    )
+
   
   const onSubmit = input => {
     setModal(false)
@@ -48,6 +63,7 @@ export default function Pets () {
         newPet: input
       }
     })
+
   }
   
   if (loading || newPet.loading) {return <Loader />}
