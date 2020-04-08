@@ -5,26 +5,66 @@ import PetsList from '../components/PetsList'
 import NewPetModal from '../components/NewPetModal'
 import Loader from '../components/Loader'
 
-const GET_PETS = gql`
-  query GetPets{
-    pets{
-      name
+const PETS_FIELDS = gql`
+  fragment PetsFields on Pet {
+    name
+    id
+    type
+    img
+    vaccinated @client
+    owner {
       id
-      type
-      img
+      age @client
     }
   }
 `
 
+// const GET_PETS = gql`
+//   query GetPets{
+//     pets{
+//       name
+//       id
+//       type
+//       img
+//       owner {
+//         id
+//         age @client
+//       }
+//     }
+//   }
+// `
+
+const GET_PETS = gql`
+  query GetPets{
+    pets{
+      ...PetsFields
+    }
+  }
+  ${PETS_FIELDS}
+`
+
+// const ADD_PET = gql`
+//   mutation CreateAPet ($newPet: NewPetInput!) {
+//     addPet (input: $newPet){
+//         // name
+//         // id
+//         // type
+//         // img
+//         // owner {
+//         //   id
+//         //   age @client
+//         // }
+//     }  
+//   }
+// `
+
 const ADD_PET = gql`
   mutation CreateAPet ($newPet: NewPetInput!) {
     addPet (input: $newPet){
-        name
-        id
-        type
-        img
+      ...PetsFields
     }  
   }
+  ${PETS_FIELDS}
 `
 
 export default function Pets () {
@@ -55,7 +95,6 @@ export default function Pets () {
     }
   )
 
-  
   const onSubmit = input => {
     setModal(false)
     // input = type and name
@@ -79,6 +118,8 @@ export default function Pets () {
   // if (loading || newPet.loading) {return <Loader />}
   if (loading) {return <Loader />}
   if (error || newPet.error) {console.error(error)}
+
+  console.log(data.pets[0])
 
   if (modal) {
     return <NewPetModal onSubmit={onSubmit} onCancel={() => setModal(false)} />

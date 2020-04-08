@@ -9,7 +9,27 @@ import gql from 'graphql-tag'
  * Create a new apollo client and export as default
  */
 
+const typeDefs = gql`
+  extend type User {
+    age: Int
+  }
+  extend type Pet {
+    vaccinated: Boolean!
+  }
+`
 
+const resolvers = {
+  User: {
+    age() {
+      return 35
+    }
+  },
+  Pet: {
+    vaccinated() {
+      return true
+    }
+  }
+}
 
 // "hey apollo client, our api is here!" - linking our server to apollo client
 // const link = new HttpLink({uri: 'https://rickandmortyapi.com/graphql'})
@@ -30,7 +50,9 @@ const cache = new InMemoryCache();
 
 const client = new ApolloClient({
   link,
-  cache
+  cache, 
+  resolvers, 
+  typeDefs
 })
 
 // const query = gql`
