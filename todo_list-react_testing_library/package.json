@@ -1,0 +1,28 @@
+{
+  "name": "practice1",
+  "version": "1.0.0",
+  "description": "fullstack react app with hooks for testing",
+  "main": "index.js",
+  "author": "AK",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack -w --mode development"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@testing-library/react": "^10.1.0",
+    "nodemon": "^2.0.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "babel-loader": "^8.0.6",
+    "firebase": "^7.14.6",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  }
+}
