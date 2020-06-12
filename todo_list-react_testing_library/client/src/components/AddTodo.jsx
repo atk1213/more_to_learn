@@ -13,7 +13,9 @@ var AddTodo = (props) => {
 
   return (
     <form id='form' onSubmit={postTodo} >
-      <input onChange={(e) => props.setNewTodo(e.target.value)}></input>
+      <label>Todo
+        <input onChange={(e) => props.setNewTodo(e.target.value)}></input>
+      </label>
       <button type='submit'>Add Todo</button>
     </form>
   )
