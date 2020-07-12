@@ -1,0 +1,33 @@
+{
+  // how are we compiling it. what options
+  "compilerOptions": {
+    // what module we are using for compilation
+    "module": "commonjs",
+    // the language we are compiling to
+    "target": "ES2017",
+    // what directory we are outputting our compiled file to
+    "outDir": "lib",
+    // generate a type declaration file that layers right on top of the javascript it represents
+    "declaration": true,
+    // 
+    "sourceMap": true
+    /*
+    other options include:
+      // transforms jsx
+      "jsx": "react",
+      // enables "strict" features
+      "strict": true,
+      // forbit implicit any
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      check and compile JS
+      "allowJs": true,
+      "types": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "moduleResolution": "node"
+    */
+  },
+  // define what files are the inputs. what are we compiling
+  "include": ["src"]
+}
