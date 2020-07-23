@@ -20,6 +20,7 @@ x = "hello mars";
  * this is called: literal type
  */
 const y = "hello world";
+
 const yObj = {
   foo: "hello"
 };
